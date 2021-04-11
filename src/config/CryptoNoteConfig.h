@@ -238,15 +238,15 @@ namespace CryptoNote
 
         const size_t NORMAL_TX_MAX_OUTPUT_COUNT_V1_HEIGHT = 2200000;
 
-       // const uint32_t UPGRADE_HEIGHT_V2 = 1;
+        const uint32_t UPGRADE_HEIGHT_V2 = 1;
 
-      //  const uint32_t UPGRADE_HEIGHT_V3 = 2;
+       const uint32_t UPGRADE_HEIGHT_V3 = 2;
 
-     //   const uint32_t UPGRADE_HEIGHT_V4 = 350000; // Upgrade height for CN-Lite Variant 1 switch.
+       const uint32_t UPGRADE_HEIGHT_V4 = 350000; // Upgrade height for CN-Lite Variant 1 switch.
 
-     //   const uint32_t UPGRADE_HEIGHT_V5 = 1200000; // Upgrade height for CN-Turtle Variant 2 switch.
+       const uint32_t UPGRADE_HEIGHT_V5 = 1200000; // Upgrade height for CN-Turtle Variant 2 switch.
 
-     //   const uint32_t UPGRADE_HEIGHT_V6 = 1800000; // Upgrade height for Chukwa v1 switch.
+       const uint32_t UPGRADE_HEIGHT_V6 = 1800000; // Upgrade height for Chukwa v1 switch.
 
         const uint32_t UPGRADE_HEIGHT_V7 = 3000000; // Upgrade height for Chukwa v2 switch
 
@@ -260,20 +260,14 @@ namespace CryptoNote
 
         /* Block heights we are going to have hard forks at */
         const uint64_t FORK_HEIGHTS[] = {
-            3200000, // 18
-            3400000, // 19
-            3600000, // 20
-            3800000, // 21
-            4000000, // 22
-            4200000, // 23
-            4400000, // 24
-            4600000, // 25
-            4800000, // 26
-            5000000, // 27
-        };
+             187000, //0
+             287000, //1 Chukwa and reward reduction
+             487000, //2
+	           687000  //3 Max output
+		};
 
         /* MAKE SURE TO UPDATE THIS VALUE WITH EVERY MAJOR RELEASE BEFORE A FORK */
-        const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX = 17;
+        const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX = 2;
 
         const uint64_t FORK_HEIGHTS_SIZE = sizeof(FORK_HEIGHTS) / sizeof(*FORK_HEIGHTS);
 
@@ -286,9 +280,11 @@ namespace CryptoNote
         const uint8_t CURRENT_FORK_INDEX = FORK_HEIGHTS_SIZE == 0 ? 0 : SOFTWARE_SUPPORTED_FORK_INDEX;
 
         /* Make sure CURRENT_FORK_INDEX is a valid index, unless FORK_HEIGHTS is empty */
-        static_assert(
-            FORK_HEIGHTS_SIZE == 0 || CURRENT_FORK_INDEX < FORK_HEIGHTS_SIZE,
-            "CURRENT_FORK_INDEX out of range of FORK_HEIGHTS!");
+        //static_assert(
+        //    CURRENT_FORK_INDEX == 0 || CURRENT_FORK_INDEX < FORK_HEIGHTS_SIZE,
+        //    "CURRENT_FORK_INDEX out of range of FORK_HEIGHTS!");
+       static_assert(CURRENT_FORK_INDEX >= 0, "CURRENT FORK INDEX must be >= 0");
+        static_assert(FORK_HEIGHTS_SIZE == 0 || CURRENT_FORK_INDEX < FORK_HEIGHTS_SIZE, "CURRENT_FORK_INDEX out of range of FORK_HEIGHTS!");
 
         const char CRYPTONOTE_BLOCKS_FILENAME[] = "blocks.bin";
 
@@ -309,12 +305,12 @@ namespace CryptoNote
 
     const uint8_t CURRENT_TRANSACTION_VERSION = TRANSACTION_VERSION_1;
 
-    //const uint8_t BLOCK_MAJOR_VERSION_1 = 1; /* From zero */
-    //const uint8_t BLOCK_MAJOR_VERSION_2 = 2; /* UPGRADE_HEIGHT_V2 */
-    //const uint8_t BLOCK_MAJOR_VERSION_3 = 3; /* UPGRADE_HEIGHT_V3 */
-   // const uint8_t BLOCK_MAJOR_VERSION_4 = 4; /* UPGRADE_HEIGHT_V4 */
-   // const uint8_t BLOCK_MAJOR_VERSION_5 = 5; /* UPGRADE_HEIGHT_V5 */
-   // const uint8_t BLOCK_MAJOR_VERSION_6 = 6; /* UPGRADE_HEIGHT_V6 */
+    const uint8_t BLOCK_MAJOR_VERSION_1 = 1; /* From zero */
+    const uint8_t BLOCK_MAJOR_VERSION_2 = 2; /* UPGRADE_HEIGHT_V2 */
+    const uint8_t BLOCK_MAJOR_VERSION_3 = 3; /* UPGRADE_HEIGHT_V3 */
+    const uint8_t BLOCK_MAJOR_VERSION_4 = 4; /* UPGRADE_HEIGHT_V4 */
+    const uint8_t BLOCK_MAJOR_VERSION_5 = 5; /* UPGRADE_HEIGHT_V5 */
+    const uint8_t BLOCK_MAJOR_VERSION_6 = 6; /* UPGRADE_HEIGHT_V6 */
     const uint8_t BLOCK_MAJOR_VERSION_7 = 7; /* UPGRADE_HEIGHT_V7 */
 
     const uint8_t BLOCK_MINOR_VERSION_0 = 0;
@@ -323,12 +319,12 @@ namespace CryptoNote
 
     const std::unordered_map<uint8_t, std::function<void(const void *data, size_t length, Crypto::Hash &hash)>>
         HASHING_ALGORITHMS_BY_BLOCK_VERSION = {
-            //{BLOCK_MAJOR_VERSION_1, Crypto::cn_slow_hash_v0}, /* From zero */
-           // {BLOCK_MAJOR_VERSION_2, Crypto::cn_slow_hash_v0}, /* UPGRADE_HEIGHT_V2 */
-          //  {BLOCK_MAJOR_VERSION_3, Crypto::cn_slow_hash_v0}, /* UPGRADE_HEIGHT_V3 */
-          //  {BLOCK_MAJOR_VERSION_4, Crypto::cn_lite_slow_hash_v1}, /* UPGRADE_HEIGHT_V4 */
-          //  {BLOCK_MAJOR_VERSION_5, Crypto::cn_turtle_lite_slow_hash_v2}, /* UPGRADE_HEIGHT_V5 */
-          //  {BLOCK_MAJOR_VERSION_6, Crypto::chukwa_slow_hash_v1}, /* UPGRADE_HEIGHT_V6 */
+          {BLOCK_MAJOR_VERSION_1, Crypto::cn_slow_hash_v0}, /* From zero */
+           {BLOCK_MAJOR_VERSION_2, Crypto::cn_slow_hash_v0}, /* UPGRADE_HEIGHT_V2 */
+            {BLOCK_MAJOR_VERSION_3, Crypto::cn_slow_hash_v0}, /* UPGRADE_HEIGHT_V3 */
+            {BLOCK_MAJOR_VERSION_4, Crypto::cn_lite_slow_hash_v1}, /* UPGRADE_HEIGHT_V4 */
+            {BLOCK_MAJOR_VERSION_5, Crypto::cn_turtle_lite_slow_hash_v2}, /* UPGRADE_HEIGHT_V5 */
+            {BLOCK_MAJOR_VERSION_6, Crypto::chukwa_slow_hash_v1}, /* UPGRADE_HEIGHT_V6 */
             {BLOCK_MAJOR_VERSION_7, Crypto::chukwa_slow_hash_v2} /* UPGRADE_HEIGHT_V7 */
     };
 
