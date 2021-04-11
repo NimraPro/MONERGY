@@ -19,7 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         # Add more compilers here if you need them
-        build_name: ['Ubuntu GCC 7', 'Ubuntu GCC 8', 'Ubuntu Clang 6', 'aarch64']
+        build_name: ['Ubuntu GCC 7', 'Ubuntu GCC 8', 'aarch64']
         include:
           - build_name: 'Ubuntu GCC 7'
             package_name: 'gcc-7 g++-7'
@@ -33,11 +33,6 @@ jobs:
             cxx: g++-8
             label: linux
             deployable: true
-          - build_name: 'Ubuntu Clang 6'
-            cc: clang-6.0
-            cxx: clang++-6.0
-            label: linux-clang-6
-            deployable: false
           - build_name: 'aarch64'
             label: aarch64
             deployable: true
@@ -244,12 +239,21 @@ jobs:
       - name: Install OpenSSL
         run: choco install openssl
 
+      # Install boost
+      - name: Install Boost 1.69.0
+        run: |
+          $link = "https://bintray.com/boostorg/release/download_file?file_path=1.69.0%2Fbinaries%2Fboost_1_69_0-msvc-14.1-64.exe"
+          $path = "C:\boost.exe"
+          [Net.WebClient]::new().DownloadFile($link, $path)
+          Start-Process C:\boost.exe -ArgumentList "/DIR=C:\local\boost_1_69_0","/VERYSILENT" -Wait
+          Get-ChildItem C:\local\boost_1_69_0
+
       # Configure project with cmake
       - name: Configure
         run: |
           mkdir build
           cd build
-          cmake -G "Visual Studio 16 2019" -A x64 .. -DARCH=default -DBOOST_ROOT="$env:BOOST_ROOT_1_69_0"
+          cmake -G "Visual Studio 16 2019" -A x64 .. -DARCH=default -DBOOST_ROOT=C:/local/boost_1_69_0
 
       # Build for Windows
       - name: Build
