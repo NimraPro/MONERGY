@@ -20,7 +20,7 @@ namespace CryptoNote
 {
     namespace parameters
     {
-        const uint64_t DIFFICULTY_TARGET = 30; // seconds
+        const uint64_t DIFFICULTY_TARGET = 90; // seconds
 
         const uint32_t CRYPTONOTE_MAX_BLOCK_NUMBER = 500000000;
 
@@ -57,7 +57,7 @@ namespace CryptoNote
 
         const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V3 = 800000;
 
-        const unsigned EMISSION_SPEED_FACTOR = 25;
+        const unsigned EMISSION_SPEED_FACTOR = 19;
 
         static_assert(EMISSION_SPEED_FACTOR <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
 
@@ -258,24 +258,8 @@ namespace CryptoNote
 
         /* Block heights we are going to have hard forks at */
         const uint64_t FORK_HEIGHTS[] = {
-            187000, // 0
-            350000, // 1
-            440000, // 2
-            620000, // 3
-            700000, // 4
-            800000, // 5
-            1000000, // 6
-            1200000, // 7
-            1300000, // 8
-            1400000, // 9
-            1600000, // 10
-            1800000, // 11
-            2000000, // 12
-            2200000, // 13
-            2400000, // 14
-            2600000, // 15
-            2800000, // 16
-            3000000, // 17
+            2800000, // 17
+			3000000, // 17
             3200000, // 18
             3400000, // 19
             3600000, // 20
@@ -317,7 +301,7 @@ namespace CryptoNote
         const char MINER_CONFIG_FILE_NAME[] = "miner_conf.json";
     } // namespace parameters
 
-    const char CRYPTONOTE_NAME[] = "TurtleCoin";
+    const char CRYPTONOTE_NAME[] = "MONERGY";
 
     const uint8_t TRANSACTION_VERSION_1 = 1;
 
@@ -352,9 +336,9 @@ namespace CryptoNote
     const uint64_t BLOCKS_SYNCHRONIZING_DEFAULT_COUNT = 100; // by default, blocks count in blocks downloading
     const size_t COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT = 1000;
 
-    const int P2P_DEFAULT_PORT = 11897;
+    const int P2P_DEFAULT_PORT = 11555;
 
-    const int RPC_DEFAULT_PORT = 11898;
+    const int RPC_DEFAULT_PORT = 11666;
 
     const int SERVICE_DEFAULT_PORT = 8070;
 
@@ -405,14 +389,11 @@ namespace CryptoNote
     const std::string LICENSE_URL = "https://github.com/turtlecoin/turtlecoin/blob/master/LICENSE";
 
     const static boost::uuids::uuid CRYPTONOTE_NETWORK = {
-        {0xb5, 0x0c, 0x4a, 0x6c, 0xcf, 0x52, 0x57, 0x41, 0x65, 0xf9, 0x91, 0xa4, 0xb6, 0xc1, 0x43, 0xe9}};
+        {0xb5, 0x4a, 0x6c, 0x0c, 0xcf, 0x52, 0x57, 0x41, 0x65, 0x91, 0xa4, 0xb6, 0xf9, 0xc1, 0x43, 0xe9}};
 
     const char *const SEED_NODES[] = {
-        "145.239.88.119:11897", // cision
-        "165.227.252.132:11897", // iburnmycd
-        "148.251.178.238:11897", // hv
-        "45.32.138.7:11897", // extra
-        "46.214.70.196:11897", // CuveeRO
-        "84.242.80.251:11897" // CuveeCZ
+	"95.179.178.50:11555",
+	"95.179.216.85:11555",
+	"77.238.206.209:11555"
     };
 } // namespace CryptoNote
