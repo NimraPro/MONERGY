@@ -333,9 +333,9 @@ namespace CryptoNote
     const uint64_t BLOCKS_SYNCHRONIZING_DEFAULT_COUNT = 100; // by default, blocks count in blocks downloading
     const size_t COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT = 1000;
 
-    const int P2P_DEFAULT_PORT = 11555;
+    const int P2P_DEFAULT_PORT = 11888;
 
-    const int RPC_DEFAULT_PORT = 11666;
+    const int RPC_DEFAULT_PORT = 11889;
 
     const int SERVICE_DEFAULT_PORT = 8070;
 
@@ -389,9 +389,9 @@ namespace CryptoNote
         {0xb5, 0x4a, 0x6c, 0x0c, 0xcf, 0x52, 0x57, 0x41, 0x65, 0x91, 0xa4, 0xb6, 0xf9, 0xc1, 0x43, 0xe9}};
 
     const char *const SEED_NODES[] = {
-	"95.179.178.50:11555",
-	"136.244.86.187:11555",
-	"77.238.206.209:11555",
-	"95.179.136.166:11555"
+	"95.179.178.50:11888",
+	"136.244.86.187:11888",
+	"77.238.206.209:11888",
+	"95.179.136.166:11888"
     };
 } // namespace CryptoNote
