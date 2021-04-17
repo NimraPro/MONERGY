@@ -256,14 +256,12 @@ namespace CryptoNote
 
         /* Block heights we are going to have hard forks at */
         const uint64_t FORK_HEIGHTS[] = {
-             187000, //0
-             287000, //1 Chukwa and reward reduction
-             487000, //2
-	           687000  //3 Max output
+			3000000,
+			3200000
 		};
 
         /* MAKE SURE TO UPDATE THIS VALUE WITH EVERY MAJOR RELEASE BEFORE A FORK */
-        const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX = 2;
+        const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX = 1;
 
         const uint64_t FORK_HEIGHTS_SIZE = sizeof(FORK_HEIGHTS) / sizeof(*FORK_HEIGHTS);
 
@@ -301,7 +299,7 @@ namespace CryptoNote
 
     const uint8_t CURRENT_TRANSACTION_VERSION = TRANSACTION_VERSION_1;
 
-    const uint8_t BLOCK_MAJOR_VERSION_1 = 1; /* From zero */
+    const uint8_t BLOCK_MAJOR_VERSION_1 = 1; /* From zero */ 
     const uint8_t BLOCK_MAJOR_VERSION_2 = 2; /* UPGRADE_HEIGHT_V2 */
     const uint8_t BLOCK_MAJOR_VERSION_3 = 3; /* UPGRADE_HEIGHT_V3 */
     const uint8_t BLOCK_MAJOR_VERSION_4 = 4; /* UPGRADE_HEIGHT_V4 */
@@ -315,12 +313,7 @@ namespace CryptoNote
 
     const std::unordered_map<uint8_t, std::function<void(const void *data, size_t length, Crypto::Hash &hash)>>
         HASHING_ALGORITHMS_BY_BLOCK_VERSION = {
-          {BLOCK_MAJOR_VERSION_1, Crypto::cn_slow_hash_v0}, /* From zero */
-           {BLOCK_MAJOR_VERSION_2, Crypto::cn_slow_hash_v0}, /* UPGRADE_HEIGHT_V2 */
-            {BLOCK_MAJOR_VERSION_3, Crypto::cn_slow_hash_v0}, /* UPGRADE_HEIGHT_V3 */
-            {BLOCK_MAJOR_VERSION_4, Crypto::cn_lite_slow_hash_v1}, /* UPGRADE_HEIGHT_V4 */
-            {BLOCK_MAJOR_VERSION_5, Crypto::cn_turtle_lite_slow_hash_v2}, /* UPGRADE_HEIGHT_V5 */
-            {BLOCK_MAJOR_VERSION_6, Crypto::chukwa_slow_hash_v1}, /* UPGRADE_HEIGHT_V6 */
+
             {BLOCK_MAJOR_VERSION_7, Crypto::chukwa_slow_hash_v2} /* UPGRADE_HEIGHT_V7 */
     };
 
@@ -328,11 +321,11 @@ namespace CryptoNote
     const uint64_t BLOCKS_SYNCHRONIZING_DEFAULT_COUNT = 100; // by default, blocks count in blocks downloading
     const size_t COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT = 1000;
 
-    const int P2P_DEFAULT_PORT = 11888;
+    const int P2P_DEFAULT_PORT = 11001;
 
-    const int RPC_DEFAULT_PORT = 11889;
+    const int RPC_DEFAULT_PORT = 11002;
 
-    const int SERVICE_DEFAULT_PORT = 8070;
+    const int SERVICE_DEFAULT_PORT = 8012;
 
     const size_t P2P_LOCAL_WHITE_PEERLIST_LIMIT = 1000;
 
@@ -381,16 +374,14 @@ namespace CryptoNote
     const std::string LICENSE_URL = "https://github.com/turtlecoin/turtlecoin/blob/master/LICENSE";
 
 	    const static boost::uuids::uuid CRYPTONOTE_NETWORK = {
-        {0xb5, 0x0c, 0x4a, 0x6c, 0xcf, 0x52, 0x57, 0x41, 0x65, 0xf9, 0x91, 0xa4, 0xb6, 0xc1, 0x43, 0xe9}};
+        {0xb9, 0x77, 0xa9, 0x8c, 0xbf, 0x44, 0x87, 0x43, 0x61, 0xd7, 0xa9, 0xd8, 0xc3, 0xf6, 0x48, 0xe3}};
 
 
     const char *const SEED_NODES[] = {
 	"155.138.147.163:11888",
 	"136.244.86.187:11888",
 	"77.238.206.209:11888",
-	"95.179.136.166:11888",
-	"109.175.39.220:11888",
 	"207.246.66.104:11888",
-	"66.42.38.143:11888"
+	"66.42.38.143:11888" 
     };
 } // namespace CryptoNote
